@@ -1,4 +1,4 @@
-/* 
+/*
 Hy's P5.js Car Dodger | Year 11 Digital Technologies 2020
 Paul "Hy" Asencion | SACE 740975X
 
@@ -24,8 +24,7 @@ function setup() {
     timer2 = millis() ;
     timer3 = millis();
     timerR = (random(0,30000)) // Rolls a random timer of 0 to 30 seconds.
-    console.log("Collectible timer is",timerR,"ms.");
-    
+    console.log(`Collectible timer is ${timerR}ms.`);
 }
 
 // Declare variables
@@ -44,7 +43,7 @@ var collectibles = [];
 var collectibleType = ["None","Repair Kit","Tire Spikes","Traffic Jam","Nitrogen","Multiplier"];
 
 // Movement functionality
-function keyPressed() { 
+function keyPressed() {
     // uses a seperate move function for setTimeout and the slow effect
     if (keyCode == LEFT_ARROW && player.carPos != 1) {
         if (slow == true) {setTimeout(movePlayer,500,-1)}
@@ -179,7 +178,7 @@ function createConsequence(collType){
         Multiplier = 2;
         timerC = millis();
     }
-} 
+}
 function updateConsequence() { // Runs every draw() call to update the length of the powerup.
     if (powerup == 2) {
         if (!(millis() >= 10000 + timerC)) {

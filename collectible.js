@@ -29,7 +29,7 @@ class collectible {
             this.break=true;
         } else if (this.break == false) {
             this.y += 0.5 * Difficulty;
-        }   
+        }
         if (collideRectRect(this.x, this.y, 30, 30, player.x, player.y, 30, 30)) {
             this.x = 0;
             this.y = 0;
