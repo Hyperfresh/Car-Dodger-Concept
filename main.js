@@ -61,52 +61,55 @@ function movePlayer(dir){
     player.x += dir*100
 }
 
+let paused = false;
 function draw() {
-    // Canvas
-    background(128);
-    fill(255);
-    // Draw variables like score, lives, etc.
-    textSize(11);
-    text("Score: " + Score + " ✕" + Multiplier, 20, 20);
-    text("Lives: " + Lives, 100, 20);
-    text("Difficulty: 10/" + Difficulty, 20, 40);
-    text("Applied Collectible: " + collectibleType[powerup], 20, 60);
-    // Update class displays
-    player.display();
-    updateEnemy();
-    updateCollectible();
-    updateConsequence();
-    // Spawn classes if criteria met
-    if (millis() >= 10 + timer1) {
-        createEnemy();
-        timer1 += 99999999999999999999999999999999999999999;
-    }
-    if (millis() >= 3000 + timer2) {
-        createEnemy();
-        timer2 += 99999999999999999999999999999999999999999;
-    }
-    if (Score >= 5 && millis() >= timerR + timer3) { // Score must be 5 to spawn collectible
-        createCollectible();
-        timer3 = millis();
-        timerR = (random(0,30000)) // Rolls a random timer of 0 to 30 seconds.
-        console.log("Collectible timer is",timerR,"ms.");
-    }
-    if (Lives <= 0) { // Stop the game if player loses all lives.
-        // Game Over text
-        fill(0);
-        textSize(32);
-        text("Game over!", 150, 180);
-        // Subtitle asking player to refresh
-        textSize(16);
-        text("Refresh the page to play again.", 130, 200);
-        // Crash the game
-        throw new Error("Game over! Your score was " + Score);
-    }
-    if (Break == true) { // Debug purposes only to crash game
-        fill(0);
-        textSize(32); // text size
-        text("Keyboard interrupt!", 101, 180);
-        throw new Error("KeyboardInterrupt!");
+    if(!paused) {
+        // Canvas
+        background(128);
+        fill(255);
+        // Draw variables like score, lives, etc.
+        textSize(11);
+        text("Score: " + Score + " ✕" + Multiplier, 20, 20);
+        text("Lives: " + Lives, 100, 20);
+        text("Difficulty: 10/" + Difficulty, 20, 40);
+        text("Applied Collectible: " + collectibleType[powerup], 20, 60);
+        // Update class displays
+        player.display();
+        updateEnemy();
+        updateCollectible();
+        updateConsequence();
+        // Spawn classes if criteria met
+        if (millis() >= 10 + timer1) {
+            createEnemy();
+            timer1 += 99999999999999999999999999999999999999999;
+        }
+        if (millis() >= 3000 + timer2) {
+            createEnemy();
+            timer2 += 99999999999999999999999999999999999999999;
+        }
+        if (Score >= 5 && millis() >= timerR + timer3) { // Score must be 5 to spawn collectible
+            createCollectible();
+            timer3 = millis();
+            timerR = (random(0,30000)) // Rolls a random timer of 0 to 30 seconds.
+            console.log("Collectible timer is",timerR,"ms.");
+        }
+        if (Lives <= 0) { // Stop the game if player loses all lives.
+            // Game Over text
+            fill(0);
+            textSize(32);
+            text("Game over!", 150, 180);
+            // Subtitle asking player to refresh
+            textSize(16);
+            text("Refresh the page to play again.", 130, 200);
+            // Crash the game
+            return paused = true;
+        }
+        if (Break == true) { // Debug purposes only to crash game
+            fill(0);
+            textSize(32); // text size
+            text("Keyboard interrupt!", 101, 180);
+            throw new Error("KeyboardInterrupt!");
+        }
     }
 }
 
