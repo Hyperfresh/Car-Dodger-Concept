@@ -62,6 +62,7 @@ function movePlayer(dir){
 }
 
 let paused = false;
+let lives = "❤️❤️❤️";
 function draw() {
     if(!paused) {
         // Canvas
@@ -69,10 +70,10 @@ function draw() {
         fill(255);
         // Draw variables like score, lives, etc.
         textSize(11);
-        text("Score: " + Score + " ✕" + Multiplier, 20, 20);
-        text("Lives: " + Lives, 100, 20);
-        text("Difficulty: 10/" + Difficulty, 20, 40);
-        text("Applied Collectible: " + collectibleType[powerup], 20, 60);
+        text("Score: " + Score + " ✕" + Multiplier, 10, 20);
+        text(lives, 212, 350);
+        text("Difficulty: 10/" + Difficulty, 10, 40);
+        text("Applied Collectible: " + collectibleType[powerup], 10, 60);
         // Update class displays
         player.display();
         updateEnemy();
@@ -94,6 +95,19 @@ function draw() {
             console.log("Collectible timer is",timerR,"ms.");
         }
         if (Lives <= 0) { // Stop the game if player loses all lives.
+            // Redraw everything a last time to remove the last heart from lives count
+            background(128);
+            fill(255);
+            textSize(11);
+            text("Score: " + Score + " ✕" + Multiplier, 10, 20);
+            text(lives, 212, 350);
+            text("Difficulty: 10/" + Difficulty, 10, 40);
+            text("Applied Collectible: " + collectibleType[powerup], 10, 60);
+            player.display();
+            updateEnemy();
+            updateCollectible();
+            updateConsequence();
+
             // Game Over text
             fill(0);
             textSize(32);
