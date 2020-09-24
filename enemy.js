@@ -11,8 +11,9 @@ class enemy {
             Score += 1 * Multiplier;
         } else {
             this.y += 0.5 * Difficulty;
-        }   
+        }
         if (collideRectRect(this.x, this.y, 30, 30, player.x, player.y, 30, 30)) {
+            lives = lives.slice(0, -2);
             Lives -= 1
             this.x = this.avpos[int(random(0,3))];
             this.y = 10;
