@@ -1,3 +1,9 @@
+This repository is the home of a web browser game on the p5.js engine - a basic car dodging game (without any spriting work). The game was first [prototyped on Scratch](https://scratch.mit.edu/projects/421421238/) before rewritten in p5.js with extra additions. It was created for a school assignment (which has long since been completed), hence now why this project is marked as archived.
+
+Do as you wish with this project, as long as you follow Apache 2.0.
+
+---
+
 # Car Dodger Concept
 A p5.js generic car dodger game with some extra additions.
 
